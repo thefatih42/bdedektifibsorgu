@@ -184,7 +184,7 @@
             </span>
             <button style="border: none;" onclick="hidePopup()">Kapat</button>
         </div>
-        <h1>Boykot Dedektifi</h1>
+        <h1 style="margin: 0;">Boykot Dedektifi</h1>
     </div>
     
     <div class="content">
@@ -255,27 +255,27 @@
         const guvenilirUrunler = ['eti', 'torku','kitapyurdu','bkmkitap'];
     
         const logoUrls = {
-            'algida': 'https://upload.wikimedia.org/wikipedia/tr/8/85/Algida_logo.jpg?20111111174510',
-            'cocacola': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc7draL6G2Z6DOU7bBHh8ofcMGmRM_GZ8mhQ&s',
-            'fanta': 'https://upload.wikimedia.org/wikipedia/tr/a/a3/Fanta_yeni_logo.png',
-            'disney': 'https://upload.wikimedia.org/wikipedia/commons/6/64/Disney%2B_2024.svg',
-            'koroplast': 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Koroplast_Logo.png',
-            'puma':'https://upload.wikimedia.org/wikipedia/tr/b/b1/Puma_Logo.png',
-            'sabon': 'https://i.pinimg.com/736x/74/6c/eb/746ceb04401fc9852d554793768bbb9e.jpg',
-            'socar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Logo_of_SOCAR.svg/1280px-Logo_of_SOCAR.svg.png',
-            'sprite': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTaQ86k2fupGemOqKodFPQJYQtSfJai5tvZw&s',
-            'redbull': 'https://logowik.com/content/uploads/images/125_redbull.jpg',
-            'pepsi': 'https://upload.wikimedia.org/wikipedia/commons/6/68/Pepsi_2023.svg',
-            'ülker': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/%C3%9Clker_logo.svg/2560px-%C3%9Clker_logo.svg.png',
-            'eti': 'https://upload.wikimedia.org/wikipedia/tr/a/a7/Eti_logosu.jpg',
-            'torku': 'https://example.com/torku-logo.png',
-            'a101': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/A101_logo.svg/2560px-A101_logo.svg.png',
-            'kitapyurdu': 'https://cdn.webrazzi.com/uploads/2021/01/kitapyurdu-793.png',
-            'bkmkitap': 'https://docs.tuyap.online/KBF/Resim3152/148248.png',
-            'purinaone': 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Purina_ONE_logo.png',
-            'PURINAONE': 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Purina_ONE_logo.png',
-            'philips': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Philips_logo_new.svg/1024px-Philips_logo_new.svg.png',
-            'kahve dünyası': 'https://logowik.com/content/uploads/images/626_kahvedunyasi.jpg'
+            'algida': 'bimage/algida.jpg',
+            'cocacola': 'bimage/Coca-Cola_logo.png',
+            'fanta': 'bimage/fanta.png',
+            'disney': 'bimage/disney.png',
+            'koroplast': 'bimage/Koroplast_Logo.png',
+            'puma':'bimage/Puma_Logo.png',
+            'sabon': 'bimage/Sabon_logo_gold.png',
+            'socar': 'bimage/_SOCAR.png',
+            'sprite': 'bimage/Sprite_Logo.svg.png',
+            'redbull': 'bimage/Red-Bull-logo-design1-preview.jpg',
+            'pepsi': 'bimage/Pepsi_2023.svg.png',
+            'ülker': 'bimage/Ülker_logo.svg.png',
+            'eti': 'bimage/Eti_logosu.jpg',
+            'torku': 'bimage/522_torku_logo.jpg',
+            'a101': 'bimage/A101_logo.svg.png',
+            'kitapyurdu': 'bimage/kitapyurdu-793.webp',
+            'bkmkitap': 'bimage/0552e06a-bad1-4f29-b4b5-05d117e4cf04-47448.webp',
+            'purinaone': 'bimage/Purina_ONE_logo.png',
+            'PURINAONE': 'bimage/Purina_ONE_logo.png',
+            'philips': 'bimage/Philips_logo_new.svg.png',
+            'kahve dünyası': 'bimage/626_kahvedunyasi.jpg'
         };
     
         const descriptionTexts = {
@@ -352,47 +352,6 @@
             document.getElementById('popup').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
-
-
-        const CACHE_NAME = 'site-cache';
-const urlsToCache = [
-    '/',
-    '/index.html'
-  // Diğer gerekli dosyaları buraya ekleyin
-];
-
-self.addEventListener('install', event => {
-    event.waitUntil(
-    caches.open(CACHE_NAME)
-        .then(cache => {
-        return cache.addAll(urlsToCache);
-        })
-    );
-});
-
-self.addEventListener('fetch', event => {
-    event.respondWith(
-    caches.match(event.request)
-        .then(response => {
-        if (response) {
-            return response;
-        }
-        return fetch(event.request);
-        })
-    );
-});
-
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-    });
-    });
-    }
-
     </script>
     
     
