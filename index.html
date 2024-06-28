@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boykot Dedektifi - Boykotlu ürün sorgulama</title>
+    <style>
+        *{
+            font-family: 'Inter',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FCFCF9;
+        }
+        .header {
+            background-color: #4c99a3;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            font-weight: 300;
+        }
+        .menu-icon {
+            font-size: 35px;
+            cursor: pointer;
+            position: absolute;
+            left: 10px;
+        }
+        .content {
+            padding: 20px;
+            max-width: 600px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: #8B0000;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .image-container img {
+            width: 30%;
+            height: auto;
+        }
+        .search-container {
+            display: flex;
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search-input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background-color: #FCFCF9;
+            height: 69px;
+            outline: none;
+            color: #4c99a3;
+        }
+
+        .search-input:focus{
+            border: solid 2px #4c99a3;
+        }
+
+        .search-input::placeholder{
+            color: #8A8A8A;
+        }
+
+        .search-button {
+            background-color: #4c99a3;
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 100%;
+            position: absolute;
+            right: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .result-container {
+            background-color: #FCFCF9;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .result-logo {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+        .result-text {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .quote {
+            font-style: italic;
+            color: #666;
+        }
+        .faq-container {
+            margin-top: 40px;
+            color: #4B6076;
+        }
+        .faq-item {
+            background-color: #F2F2F2;
+            border: solid 2px #E9E9E3;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            z-index: 1000;
+            width: 80%;
+        }
+        .popup h2 {
+            margin-top: 0;
+        }
+        .popup a {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 500;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <div class="header">
+        <div class="menu-icon" onclick="showPopup()">☰</div>
+        <div class="overlay" id="overlay" onclick="hidePopup()"></div>
+        <div class="popup" id="popup" style="color: #2E4053;">
+            <h5>Sosyal Medya Hesaplarımız</h5>
+            <span style="display: flex; width: 100%; height: auto; justify-content: center;">
+                <a style="color: #4c99a3; font-size: 40px; padding: 10px;" href="https://www.instagram.com/kullaniciadi" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a style="color: #4c99a3; font-size: 40px; padding: 10px;" href="https://www.twitter.com/kullaniciadi" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a style="color: #4c99a3; font-size: 40px; padding: 10px;" href="https://www.facebook.com/kullaniciadi" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            </span>
+            <button style="border: none;" onclick="hidePopup()">Kapat</button>
+        </div>
+        <h1>Boykot Dedektifi</h1>
+    </div>
+    
+    <div class="content">
+        <img src="image1.webp" style="width: 100%; border-radius: 5px; margin-bottom: 25px;" alt="Explosion">
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Sorgulanacak ürün adı giriniz...">
+            <button class="search-button" onclick="searchProduct()"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        
+        <div id="resultContainer" class="result-container" style="display: none;">
+            <img id="resultLogo" src="/api/placeholder/150/150" alt="" class="result-logo">
+            <p id="resultText" class="result-text"></p>
+            <p id="descriptionText" class="quote"></p>
+        </div>
+        
+        <div class="faq-container">
+            <h4 style="color: #2E4053;">Sıkça Sorulan Sorular</h4>
+
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item" style="background: none; border: none;">
+                    <h2 class="accordion-header ">
+                    <button class="accordion-button faq-item" style="background-color: #F2F2F2; color: #4B6076;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Boykot sadece ekonomik mi yoksa başka yollarla da destek olabilir miyim?
+                    </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Boykotun yanı sıra, sosyal medyada farkındalık yaratabilir, protestolara katılabilir ve Filistin yanlısı kuruluşlara <b style="color:#2E4053;">bağış</b> yapabilirsiniz.
+                    </div>
+                    </div>
+                </div>
+
+            <div class="accordion-item" style="background: none; border: none;">
+                <h2 class="accordion-header ">
+                <button class="accordion-button collapsed faq-item" style="background-color: #F2F2F2; color: #4B6076;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Boykotun sonuçlarını nasıl takip edebilirim?
+                </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Boykot hareketlerinin etkilerini ve gelişmelerini izlemek için insan hakları örgütlerinin raporlarını, haber sitelerini veya instagram sayfamızı <b style="color: #2E4053;">@boykotdedektifi</b> takip edebilirsiniz.
+                </div>
+                </div>
+            </div>
+
+        <div class="accordion-item" style="background: none; border: none;">
+            <h2 class="accordion-header ">
+            <button class="accordion-button collapsed faq-item" style="background-color: #F2F2F2; color: #4B6076;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnddd" aria-expanded="true" aria-controls="collapseEnddd">
+                Boykot hareketine çocuklarımı nasıl dahil edebilirim?
+            </button>
+            </h2>
+            <div id="collapseEnddd" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                Çocuklarınıza boykotun nedenlerini ve önemini anlatabilir, onlarla birlikte <b style="color: #2E4053;">bilinçli alışveriş</b> yapabilirsiniz. Ayrıca, çocuklara yönelik eğitim materyalleri kullanarak konuyu daha anlaşılır hale getirebilirsiniz.
+            </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+    <div class="" style="display: flex; justify-content: center; align-items: center; width: 100%; position: relative; bottom: 0;">
+        <p style="font-size: 10px;">powered by: <b style="color: #4B6076;">@ll.fatihbey</b></p>
+    </div>
+
+    <script>
+        const boykotluUrunler = ['algida', 'coca cola', 'cocacola', 'fanta', 'sprite', 'red bull', 'redbull','pepsi','disney','ülker','koroplast','puma','sabon','socar','a101','purinaone','PURINAONE','philips','kahve dünyası'];
+        const guvenilirUrunler = ['eti', 'torku','kitapyurdu','bkmkitap'];
+    
+        const logoUrls = {
+            'algida': 'https://upload.wikimedia.org/wikipedia/tr/8/85/Algida_logo.jpg?20111111174510',
+            'cocacola': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc7draL6G2Z6DOU7bBHh8ofcMGmRM_GZ8mhQ&s',
+            'fanta': 'https://upload.wikimedia.org/wikipedia/tr/a/a3/Fanta_yeni_logo.png',
+            'disney': 'https://upload.wikimedia.org/wikipedia/commons/6/64/Disney%2B_2024.svg',
+            'koroplast': 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Koroplast_Logo.png',
+            'puma':'https://upload.wikimedia.org/wikipedia/tr/b/b1/Puma_Logo.png',
+            'sabon': 'https://i.pinimg.com/736x/74/6c/eb/746ceb04401fc9852d554793768bbb9e.jpg',
+            'socar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Logo_of_SOCAR.svg/1280px-Logo_of_SOCAR.svg.png',
+            'sprite': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTaQ86k2fupGemOqKodFPQJYQtSfJai5tvZw&s',
+            'redbull': 'https://logowik.com/content/uploads/images/125_redbull.jpg',
+            'pepsi': 'https://upload.wikimedia.org/wikipedia/commons/6/68/Pepsi_2023.svg',
+            'ülker': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/%C3%9Clker_logo.svg/2560px-%C3%9Clker_logo.svg.png',
+            'eti': 'https://upload.wikimedia.org/wikipedia/tr/a/a7/Eti_logosu.jpg',
+            'torku': 'https://example.com/torku-logo.png',
+            'a101': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/A101_logo.svg/2560px-A101_logo.svg.png',
+            'kitapyurdu': 'https://cdn.webrazzi.com/uploads/2021/01/kitapyurdu-793.png',
+            'bkmkitap': 'https://docs.tuyap.online/KBF/Resim3152/148248.png',
+            'purinaone': 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Purina_ONE_logo.png',
+            'PURINAONE': 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Purina_ONE_logo.png',
+            'philips': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Philips_logo_new.svg/1024px-Philips_logo_new.svg.png',
+            'kahve dünyası': 'https://logowik.com/content/uploads/images/626_kahvedunyasi.jpg'
+        };
+    
+        const descriptionTexts = {
+            // kahve dünyası ?
+            'algida': 'Algida: Unilever\'e ait olan Algida markası, İsrail menşeili Strauss Group ile iş ortaklığı bulunması nedeniyle boykot listesindedir.',
+            'cocacola': '"Zulüm edenlere destek olmayın, yoksa ateş size de dokunur." (Hûd 113)',
+            'fanta': 'Fanta\'nın sahibi olan <b>Coca-Cola</b> Şirketi, işgal altındaki Filistin topraklarında inşa edilen yasadışı İsrail yerleşimi Atarot’ta bir fabrika işletmektedir. Fanta, Alman işadamı Max Keith\'in liderliğinde Coca-Cola Deutschland tarafından yaratılan, Amerika\'ya ait meyve aromalı gazlı alkolsüz içecek markasıdır.',
+            'koroplast': 'Gerek gündelik hayatta, gerekse kurban bayramı döneminde ev hanımlarının çok yoğun bir şekilde kullandığı buz dolabı poşeti ve çöp torbasında en çok satılan ve tercih edilen marka olan KOROPLAST Eli ve Rıfat Rafael Duvenyaz isimli iki yahudi kardeşin Ülkemiz topraklarında kurmuş olduğu bir markadır.',
+            'puma': 'Puma başta İsrail Futbol Federasyonu ve İsrail Milli Takımı Olmak üzere, işgalci İsra*l\'in Gasp Ettiği Topraklarda Kurulan Bir Çok İsra*l\'li Futbol Kulübünün Forma Sponsorluğunu Yapıyor. Dünya çapında BOYKOT Çağrıları sonrası Sponsorluğunu sonlandırdığını duyuran Puma, Yaptığımız araştırma sonucu sponsorluğu durdurmadığı 1 yıl sonra bitecek anlaşmayı şuan için devam ettirdiği görüldü. Ayrıca yapmış olduğumuz araştırmada PUMA İşgalci İsra*l\'in Basketbol Milli Takımı ile de Sponsorluğunu Sürdürüyor.',
+            'sabon': 'Groupe Rocher firması çatısı altında bulunan Sabon markasının İsrail askerlerine kozmetik paketleri gönderdiğine dair fotoğraflar ortaya çıktı. Yves Rocher, Flormar da yine bu grup içinde bulunan diğer markalar. Açıkça İsra*l\'e yönelik bir destekte bulunan Groupe Rocher boykot listemize eklenmiştir. <a href="https://www.instagram.com/p/C71x2IAMW5J/?img_index=4" target="_blank" style="color:#4c99a3;">kanıt</a>',
+            'socar': 'İnternet Alt Yapı ve Telekomünikasyon Şirketi Olan Azerbaycan Menşeili Millenicom İsra*l\'e petrol ticaretine devam eden SOCAR\'a ait bir şirkettir. Ülkemizde Milyonlara Varan Abonesi Olan Millenicom\'un internet hizmetini kullanarak işgalci İsra*l\'e Destek Olmayın.',
+            'sprite': 'Sprite Coca Cola Firmasına ait bir gazoz markasıdır.',
+            'redbull': 'Redbull Avusturya merkezli bir enerji içeceği markası olmasına rağmen, işgal edilmiş Filistin topraklarında kurduğu fabrika ile israil yatırımlarına Büyük önem vermektedir. Redbull enerji içeceğinin yanısıra Telekominikasyon alanında Redbull mobile ismi ile isra*l\'de ki varlığını artırmaya devam etmektedir.',
+            'pepsi': 'Pepsi isra*l ordusuna 1 milyar dolar yardımda daha bulundu. Yahudiler 12 haziran günü yapılan yardımı 1 haftadır kutluyor. Boykot olduğu için cocacola - fanta almayıp yerine bilinçsizce pepsi - yedigün alanlar katliama destek olmaya devam ediyor.',
+            'disney': 'Disney, İsra*l\'i desteklemek için 2 milyon dolar bağışta bulunacağını ve daha fazla girişimde bulunacağını resmi olarak duyurdu. <a href="https://thewaltdisneycompany.com/the-walt-disney-company-donates-to-support-humanitarian-relief-following-terrorist-attacks-in-israel-2/" target="_blank" style="color:#4c99a3;">kanıt</a>',
+            'ülker': 'Yahya ÜLKER Starbucks\'a gerçekleştirdiği ziyaret sebebiyle halkın çoğunluğu tarafından boykot ediliyor. ÜLKER grubu bu konuya ilişkin yaptıkları açıklamada "Starbucks\'a yapılan ziyaretin boykot öncesinde olduğunu ve bu yapılan ziyaretin "destek veriyor" algısı oluşturarak haberler yapıldığını ifade etmiş. <a href="https://www.youtube.com/watch?v=an8sShmGgXI" target="_blank" style="color:#4c99a3;">kanıt</a>',
+            'eti': 'Yerli firmadır. (Türk halkını aptal yerine koyduğu için ihtiyacınız olmadıkça ürün almamanız çok iyi olur)',
+            'torku': 'Yerli firmadır. (Türk halkını aptal yerine koyduğu için ihtiyacınız olmadıkça ürün almamanız çok iyi olur)',
+            'a101': 'İşgalci İsra*l tarafından 76 Yıldır Devam Eden Gazze ve Filistin Soykırımının Son Evresi Olan 7 Ekim 2023 Tarihinden itibaren Gözetimimiz Altında Olan A-101 İşgali Destekleyen Markaların BOYKOT Ürünlerine Sık Sık indirim Uygulayarak Boykotu Kırmaya Çalışmıştır. 1-7 Haziran Diye Duyurduğu Son İndirim ilanı artık Bardağı taşıran son damla olmuştur. <br><br> Boykot konusunda hassasiyet gösterenlerin bu marketten alışveriş yapmaması ve bunu acilen duyurması ricamızdır.',
+            'kitapyurdu': 'Kitapyurdu sitesinden siyon*st Azra Kohen\'in kitaplarını kaldırdı.',
+            'bkmkitap': 'Bkmkitap siy*nist yazarın kitaplarını kaldırmakla kalmayıp yerine Filistin içerikli kitapları koydu.',
+            'purinaone': 'Kedi, Köpek Maması ve Kuş Yemi üreten ve bu alanda Dünya\'da ve Ülkemizde en çok satış yapan bu şirket İsra*l\i Destekleyen ve Filistin\'lilere insan hakları ihlalinde bulunan Nestlé\'ye aittir. <br><br> Nestlé ayrıca isra*l\'in en büyük gıda şirketi Osem\'in de en büyük hissesine sahiptir. Nestlé "İyi Beslen, iyi Yaşa" Sloganına rağmen hem Dünya\'nın en büyük şekerli gıda üreticisi olup, hemde şeker hastalarına ilaç satan en büyük firmanın sahibidir.',
+            'PURINAONE': 'Kedi, Köpek Maması ve Kuş Yemi üreten ve bu alanda Dünya\'da ve Ülkemizde en çok satış yapan bu şirket İsra*l\i Destekleyen ve Filistin\'lilere insan hakları ihlalinde bulunan Nestlé\'ye aittir. <br><br> Nestlé ayrıca isra*l\'in en büyük gıda şirketi Osem\'in de en büyük hissesine sahiptir. Nestlé "İyi Beslen, iyi Yaşa" Sloganına rağmen hem Dünya\'nın en büyük şekerli gıda üreticisi olup, hemde şeker hastalarına ilaç satan en büyük firmanın sahibidir.',
+            'philips': 'Philips Hollanda Merkezli Dünya\'nın En Büyük Elektronik Şirketlerinden Biridir. Şirket gelirlerinin büyük bir bölümünü İsra!l\'e yatırım olarak kullanmaktadır.',
+            'kahve dünyası': '\'Safinizi belli edin zira onlar belli etmekten cekinmezken sizi alıkoyan nedir ?\' <a href="https://www.instagram.com/p/C6y-nu7McHF/" target="_blank" style="color:#4c99a3;">izle</a>'
+        };
+    
+        function searchProduct() {
+            const searchInput = document.getElementById('searchInput');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultText = document.getElementById('resultText');
+            const descriptionText = document.getElementById('descriptionText');
+            const resultLogo = document.getElementById('resultLogo');
+    
+            const product = searchInput.value.toLowerCase().trim();
+    
+            if (boykotluUrunler.includes(product)) {
+                resultText.textContent = 'Boykot listesinde!';
+                descriptionText.innerHTML = descriptionTexts[product] || '"Zulüm edenlere destek olmayın, yoksa ateş size de dokunur." (Hûd 113)';
+                resultText.style.color = 'red';
+            } else if (guvenilirUrunler.includes(product)) {
+                resultText.textContent = 'Güvenilir ürün!';
+                descriptionText.textContent = descriptionTexts[product];
+                resultText.style.color = 'green';
+            } else {
+                resultText.textContent = 'Ürün bulunamadı';
+                resultText.style.color = 'gray';
+                descriptionText.textContent = 'Yazım hatası yapmış olabilirsiniz. Girdiğiniz ürünün boykot listesine olduğunu düşünüyorsanız eklememiz için lütfen instagram: @boykotdi ile iletişime geçiniz.';
+            }
+    
+            // Ürüne özel logo gösterme
+            if (logoUrls[product]) {
+                resultLogo.src = logoUrls[product];
+            } else {
+                resultLogo.src = "/api/placeholder/150/150"; // Varsayılan logo
+            }
+    
+            resultContainer.style.display = 'block';
+        }
+    
+        
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                searchProduct();
+            }
+        });
+
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+    
+    
+
+</body>
+</html>
