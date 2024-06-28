@@ -292,7 +292,8 @@
     </div>
 
     <script>
-        const boykotluUrunler = ['algida', 'coca cola', 'cocacola', 'fanta', 'sprite', 'red bull', 'redbull','pepsi','disney','ülker','koroplast','puma','sabon','socar','a101','purinaone','PURINAONE','philips','kahve dünyası'];
+        const boykotluUrunler = ['algida', 'coca cola', 'cocacola', 'fanta', 'sprite', 'red bull', 'redbull','pepsi','disney','ülker',
+        'koroplast','puma','sabon','socar','a101','purinaone','PURINAONE','philips','kahve dünyası','nestle','kent','milka','toblerone','nutella','trendyol'];
         const guvenilirUrunler = ['eti', 'torku','kitapyurdu','bkmkitap'];
     
         const logoUrls = {
@@ -316,7 +317,13 @@
             'purinaone': 'bimage/Purina_ONE_logo.png',
             'PURINAONE': 'bimage/Purina_ONE_logo.png',
             'philips': 'bimage/Philips_logo_new.svg.png',
-            'kahve dünyası': 'bimage/626_kahvedunyasi.jpg'
+            'kahve dünyası': 'bimage/626_kahvedunyasi.jpg',
+            'nestle': 'bimage/Nestle.png',
+            'kent': 'https://upload.wikimedia.org/wikipedia/tr/b/b7/Kentgida-logo-yeni.png',
+            'milka': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Milka_Logo.svg/800px-Milka_Logo.svg.png',
+            'toblerone': 'https://www.hatchwise.com/wp-content/uploads/2023/04/image-10.png.webp',
+            'nutella': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjLt_BKiQh0PFeTrvD0v6WUHRV5LP9QjdfPw&s',
+            'trendyol': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Trendyol_logo.svg/2560px-Trendyol_logo.svg.png'
         };
     
         const descriptionTexts = {
@@ -341,7 +348,13 @@
             'purinaone': 'Kedi, Köpek Maması ve Kuş Yemi üreten ve bu alanda Dünya\'da ve Ülkemizde en çok satış yapan bu şirket İsra*l\i Destekleyen ve Filistin\'lilere insan hakları ihlalinde bulunan Nestlé\'ye aittir. <br><br> Nestlé ayrıca isra*l\'in en büyük gıda şirketi Osem\'in de en büyük hissesine sahiptir. Nestlé "İyi Beslen, iyi Yaşa" Sloganına rağmen hem Dünya\'nın en büyük şekerli gıda üreticisi olup, hemde şeker hastalarına ilaç satan en büyük firmanın sahibidir.',
             'PURINAONE': 'Kedi, Köpek Maması ve Kuş Yemi üreten ve bu alanda Dünya\'da ve Ülkemizde en çok satış yapan bu şirket İsra*l\i Destekleyen ve Filistin\'lilere insan hakları ihlalinde bulunan Nestlé\'ye aittir. <br><br> Nestlé ayrıca isra*l\'in en büyük gıda şirketi Osem\'in de en büyük hissesine sahiptir. Nestlé "İyi Beslen, iyi Yaşa" Sloganına rağmen hem Dünya\'nın en büyük şekerli gıda üreticisi olup, hemde şeker hastalarına ilaç satan en büyük firmanın sahibidir.',
             'philips': 'Philips Hollanda Merkezli Dünya\'nın En Büyük Elektronik Şirketlerinden Biridir. Şirket gelirlerinin büyük bir bölümünü İsra!l\'e yatırım olarak kullanmaktadır.',
-            'kahve dünyası': '\'Safinizi belli edin zira onlar belli etmekten cekinmezken sizi alıkoyan nedir ?\' <a href="https://www.instagram.com/p/C6y-nu7McHF/" target="_blank" style="color:#4c99a3;">izle</a>'
+            'kahve dünyası': '\'Safinizi belli edin zira onlar belli etmekten cekinmezken sizi alıkoyan nedir ?\' <a href="https://www.instagram.com/p/C6y-nu7McHF/" target="_blank" style="color:#4c99a3;">izle</a>',
+            'nestle': 'Nestle, İsra*l\'in en büyük gıda üreticilerinden ve distribütörlerinden biri olan Osem Investments\'ın sahibidir. Aynı zamanda Nestle\'nin, Gazze Şeridi\'ne yaklaşık 2 km uzaklıktaki bir yerleşim yeri olan Sderot\'ta bir Araştırma ve Geliştirme Merkezi bulunmaktadır.',
+            'kent': 'Kent İsra*l\'de yatırımları olan Mondelez International çatısı altında bulunuyor.',
+            'milka': 'Milka İsra*l\'de yatırımları olan Mondelez International çatısı altında bulunuyor.',
+            'toblerone': 'Toblerone İsra*l\'de yatırımları olan Mondelez International çatısı altında bulunuyor.',
+            'nutella': 'Nutella ve Kinder İtalya\'nın en zengini olarak bilinen Giovanni Ferrero\'nun sahibi olduğu Dünya\'nın en büyük 2. Çikolata üreticisi olan Ferrero Rocher isimli Şirkete aittir. Şirketin Orta Doğuda ki Tek Merkezi Tel Aviv\'dedir. Ferrero, İsra*l merkezli Douxmatok\'a ait olan Incredo teknolojisi başta olmak üzere İsrail\'e büyük yatırımları olan bir marka olması sebebiyle Avrupa\'da yapılan BOYKOT listelerine eklenmiştir. Avrupa\'da Ciddi manada boykot uygulanan şirket bu yıl ilk kez Ramazan\'a Özel Ambalajlar tasarlamak durumunda kalmıştır.',
+            'trendyol': 'Trendyol 7 Ekim Son Gazze olayları başladığında Filistin Temalı ürünleri sitesinden kaldırmış, bu hareketi sonrası başta Twitter olmak üzere Sosyal Medya Platformlarında çok yoğun tepkiler ile karşılaşmıştır. Pazar payının büyük kısmını Ülkemizde oluşturan şirket tepkilerin zarara ve itibar kaybına sebep olması sonucu Gazze\'ye 10 Milyon Dolar Yardım yapacağını duyurmuştur. <br><br> Daha sonra bu yardımı yapmamış olması sebebiyle 2. kez tepkilerle karşılaşan şirket Dekont (Kant) paylaşmak zorunda kalmış 10 Milyon Dolarlık yardımı bukez Kızılay\'a yaptığını duyurmuş ve kanıtlamıştır. <br><br> Velhasıl Trendyol Markası %86,5 Oranında Ç!n\'e Ait bir şirket olmakla beraber 1 Asra Yaklaşan Doğu Türkistan Zulmü Sebebiyle KESİNLİKLE BOYKOT EDİLMELİDİR.'
         };
     
         function searchProduct() {
