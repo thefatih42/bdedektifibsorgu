@@ -323,7 +323,7 @@
             } else {
                 resultText.textContent = 'Ürün bulunamadı';
                 resultText.style.color = 'gray';
-                descriptionText.textContent = 'Yazım hatası yapmış olabilirsiniz. Girdiğiniz ürünün boykot listesine olduğunu düşünüyorsanız eklememiz için lütfen instagram: @boykotdi ile iletişime geçiniz.';
+                descriptionText.innerHTML = 'Yazım hatası yapmış olabilirsiniz. Girdiğiniz ürünün boykot listesine olduğunu düşünüyorsanız eklememiz için lütfen instagram: <span style="color:#4c99a3;">@boykotdi</span> ile iletişime geçiniz.';
             }
     
             // Ürüne özel logo gösterme
@@ -352,6 +352,47 @@
             document.getElementById('popup').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
+
+
+        const CACHE_NAME = 'site-cache';
+const urlsToCache = [
+    '/',
+    '/index.html'
+  // Diğer gerekli dosyaları buraya ekleyin
+];
+
+self.addEventListener('install', event => {
+    event.waitUntil(
+    caches.open(CACHE_NAME)
+        .then(cache => {
+        return cache.addAll(urlsToCache);
+        })
+    );
+});
+
+self.addEventListener('fetch', event => {
+    event.respondWith(
+    caches.match(event.request)
+        .then(response => {
+        if (response) {
+            return response;
+        }
+        return fetch(event.request);
+        })
+    );
+});
+
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+    });
+    });
+    }
+
     </script>
     
     
