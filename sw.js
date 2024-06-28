@@ -6,6 +6,7 @@ self.addEventListener('install', event => {
             .then(cache => cache.addAll([
                 '/',
                 '/index.html',
+                'sw.js',
                 'image1.png',
                 'bimage/logo.svg',
                 'bimage/algida.jpg',
